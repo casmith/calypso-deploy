@@ -1,0 +1,41 @@
+name: Deploy with Ansible
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Ansible Playbook
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+#      - name: Set up SSH
+#        run: |
+#          echo "${{ secrets.SSH_KEY }}" > private_key.pem
+#          chmod 600 private_key.pem
+    
+#      - name: Unlock secrets
+#        uses: sliteteam/github-action-git-crypt-unlock@1.2.0
+#        env:
+#          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+
+#      - name: echo a secret
+#        run: cat secret/test-secret.txt
+#        
+      - name: test ansible
+        shell: bash
+        run: |
+          ansible --version
+#
+#      - name: Run Ansible Playbook
+#        env:
+#          ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
+#          ANSIBLE_HOST_KEY_CHECKING: False
+#        run: |
+#          ansible-playbook -i hosts.yaml playbook.yaml --private-key private_key.pem -u ${{ secrets.ANSIBLE_USER }}
+#          ansible-playbook -i hosts.yaml beoftexas/playbook.yaml --private-key private_key.pem -u ${{ secrets.ANSIBLE_USER }}
+#          ansible-playbook -i hosts.yaml projectsend/playbook.yaml --private-key private_key.pem -u ${{ secrets.ANSIBLE_USER }}
