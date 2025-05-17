@@ -1,0 +1,21 @@
+- name: Deploy Plex
+  hosts: calypso
+  tasks:
+    - name: Creates directory
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - /home/clay
+
+    - name: copy Docker Compose files
+      copy:
+        src: "{{ item }}"
+        dest: "/home/clay/{{ item }}"
+      loop:
+      - docker-compose.yaml
+
+    - name: Create and start services
+      community.docker.docker_compose_v2:
+        project_src: /home/clay
+      register: output
