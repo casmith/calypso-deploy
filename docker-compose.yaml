@@ -1,6 +1,6 @@
 services:
   plex:
-    image: linuxserver/plex:latest
+    image: linuxserver/plex:1.41.6.9685-d301f511a-ls264
     container_name: plex
     network_mode: host
     environment:
