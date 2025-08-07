@@ -18,8 +18,10 @@ services:
       - /mnt/dvr:/dvr
       # movies
       - /mnt/share/videos/movies:/movies
-      #music
+      # music
       - /mnt/share/music:/music
       - /mnt/share/music-games:/music-games
       - /mnt/share/videos/music:/videos-music
+      # audiobooks
+      - /mnt/share2/audiobooks:/audiobooks
     restart: unless-stopped
