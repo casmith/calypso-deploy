@@ -13,7 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
+        with:
+          using: node20
       - name: Run Ansible Playbook
         run: |
           ansible-playbook -i hosts.yaml playbook.yaml
