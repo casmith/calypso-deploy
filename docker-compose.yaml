@@ -25,3 +25,14 @@ services:
       # audiobooks
       - /mnt/share2/audiobooks:/audiobooks
     restart: unless-stopped
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    user: 1024:100
+    volumes:
+      - /mnt/cluster/uptime-kuma:/app/data
+    ports:
+      - 3001:3001
+    restart: unless-stopped
+
