@@ -1,5 +1,3 @@
-## docker-compose.calypso.yaml
-# Example per-host compose for `calypso` host
 services:
   plex:
     image: linuxserver/plex:1.42.2.10156-f737b826c-ls285
@@ -13,7 +11,19 @@ services:
       - /dev/dri:/dev/dri
     volumes:
       - /mnt/volume1/plex/config:/config
+      # tv
       - /mnt/share/videos/tv:/tv
+      - /mnt/video-archive:/video-archive2
+      - /mnt/share2/tv:/video-archive
+      - /mnt/dvr:/dvr
+      # movies
+      - /mnt/share/videos/movies:/movies
+      # music
+      - /mnt/share/music:/music
+      - /mnt/share/music-games:/music-games
+      - /mnt/share/videos/music:/videos-music
+      # audiobooks
+      - /mnt/share2/audiobooks:/audiobooks
     restart: unless-stopped
 
   uptime-kuma:
