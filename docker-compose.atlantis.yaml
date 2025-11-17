@@ -1,0 +1,12 @@
+## docker-compose.calypso2.yaml
+# Example per-host compose for `calypso2` host (slightly different)
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    user: 1024:100
+    volumes:
+      - /mnt/cluster/uptime-kuma:/app/data
+    ports:
+      - 3001:3001
+    restart: unless-stopped

@@ -1,21 +1,24 @@
-- name: Deploy Plex
-  hosts: calypso
+- name: Deploy services with docker-compose
+  hosts: "{{ target | default('servers') }}"
+  gather_facts: false
+  vars:
+    # If a host defines `compose_src`, it will be used; otherwise fallback to `docker-compose.yaml`
   tasks:
-    - name: Creates directory
+    - name: Ensure deploy path exists
       ansible.builtin.file:
-        path: "{{ item }}"
+        path: "{{ deploy_path | default('/home/' ~ ansible_user) }}"
         state: directory
-      loop:
-        - /home/clay
 
-    - name: copy Docker Compose files
+    - name: Copy host-specific docker-compose to deploy path
       copy:
-        src: "{{ item }}"
-        dest: "/home/clay/{{ item }}"
-      loop:
-      - docker-compose.yaml
+        src: "{{ compose_src | default('docker-compose.' ~ inventory_hostname ~ '.yaml') }}"
+        dest: "{{ (deploy_path | default('/home/' ~ ansible_user)) }}/docker-compose.yaml"
+
+    - name: Show which compose file was deployed
+      debug:
+        msg: "Deployed compose from '{{ compose_src | default('docker-compose.' ~ inventory_hostname ~ '.yaml') }}' to '{{ deploy_path | default('/home/' ~ ansible_user) }}/docker-compose.yaml'"
 
     - name: Create and start services
       community.docker.docker_compose_v2:
-        project_src: /home/clay
+        project_src: "{{ deploy_path | default('/home/' ~ ansible_user) }}"
       register: output

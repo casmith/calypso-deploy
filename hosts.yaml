@@ -1,5 +1,12 @@
 all:
-  hosts:
-    calypso:
-      ansible_host: 192.168.10.10
-      ansible_user: clay
+  children:
+    servers:
+      hosts:
+        calypso:
+          ansible_host: 192.168.10.10
+          ansible_user: clay
+          deploy_path: /home/clay
+        # atlantis:
+        #   ansible_host: 192.168.10.6
+        #   ansible_user: clay
+        #   deploy_path: /home/clay
