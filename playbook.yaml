@@ -9,6 +9,21 @@
         path: "{{ deploy_path | default('/home/' ~ ansible_user) }}"
         state: directory
 
+    - name: Populate compose_env from environment if not set
+      set_fact:
+        compose_env: "{{ compose_env | default({}) | combine({'SERVER_PASS': lookup('env','VALHEIM_PASS')}) }}"
+      when: compose_env is not defined or compose_env.SERVER_PASS is not defined
+
+    - name: Create `.env` file from `compose_env` dict (if defined)
+      ansible.builtin.copy:
+        dest: "{{ (deploy_path | default('/home/' ~ ansible_user)) }}/.env"
+        content: |
+          {%- for key, val in compose_env.items() -%}
+          {{ key }}={{ val }}
+          {%- endfor -%}
+        mode: '0600'
+      when: compose_env is defined
+
     - name: Copy host-specific docker-compose to deploy path
       copy:
         src: "{{ compose_src | default('docker-compose.' ~ inventory_hostname ~ '.yaml') }}"

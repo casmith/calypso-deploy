@@ -1,12 +1,21 @@
-## docker-compose.calypso2.yaml
-# Example per-host compose for `calypso2` host (slightly different)
+version: "3.8"
+
 services:
-  uptime-kuma:
-    image: louislam/uptime-kuma:2
-    container_name: uptime-kuma
-    user: 1024:100
-    volumes:
-      - /mnt/cluster/uptime-kuma:/app/data
+  valheimer:
+    image: lloesche/valheim-server
+    container_name: valheimer
+    restart: always
+    cap_add:
+      - SYS_NICE
+    stop_grace_period: 120s
     ports:
-      - 3001:3001
-    restart: unless-stopped
+      - "22456-22457:2456-2457/udp"
+      - "9001:80"
+    volumes:
+      - "${HOME}/valheimer/config:/config"
+      - "${HOME}/valheimer/data:/opt/valheim"
+    environment:
+      SERVER_NAME: "BrutalKhaos"
+      STATUS_HTTP: "true"
+      WORLD_NAME: "Valhammer"
+      SERVER_PASS: "${SERVER_PASS}"

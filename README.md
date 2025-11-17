@@ -34,6 +34,32 @@ all:
           ansible_host: 192.168.10.10
           ansible_user: clay
           deploy_path: /home/clay
+
+Per-host environment / secret example
+
+You can define a `compose_env` mapping on each host in `hosts.yaml`. The playbook will render that mapping into a secure `.env` file at the `deploy_path` before starting docker-compose. Store sensitive values in an Ansible Vault file or in `group_vars/` encrypted with Vault.
+
+Example `hosts.yaml` snippet with secrets (store the secret value in Vault instead of plaintext):
+
+```yaml
+all:
+  children:
+    servers:
+      hosts:
+        calypso:
+          ansible_host: 192.168.10.10
+          ansible_user: clay
+          deploy_path: /home/clay
+          compose_src: docker-compose.calypso.yaml
+          compose_env:
+            SERVER_PASS: "tyrants" # replace with a Vault variable reference in real use
+```
+
+Recommended secure workflow
+
+- Put secret values into an encrypted file using Ansible Vault (for example `group_vars/servers/vault.yml`) and reference them as values under `compose_env` (e.g. `SERVER_PASS: "{{ vault_valheim_pass }}"`).
+- Keep `.env` files out of the repository by adding patterns to `.gitignore` if you ever generate them locally.
+- Optionally, for fully managed secrets consider using an external secret manager and have Ansible pull secrets at runtime.
 ```
 
 Next steps (suggested)
