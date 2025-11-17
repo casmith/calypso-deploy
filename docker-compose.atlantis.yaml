@@ -19,3 +19,57 @@ services:
       STATUS_HTTP: "true"
       WORLD_NAME: "Valhammer"
       SERVER_PASS: "${SERVER_PASS}"
+  breastia:
+    image: lloesche/valheim-server
+    container_name: breastia
+    restart: always
+    cap_add:
+      - SYS_NICE
+    stop_grace_period: 120s
+    ports:
+      - "21456-21457:2456-2457/udp"
+      - "9002:80"
+    volumes:
+      - "${HOME}/breastia/config:/config"
+      - "${HOME}/breastia/data:/opt/valheim"
+    environment:
+      SERVER_NAME: "BrutalKhaos"
+      STATUS_HTTP: "true"
+      WORLD_NAME: "Breastia"
+      SERVER_PASS: "${SERVER_PASS}"
+  warheimer:
+    image: lloesche/valheim-server
+    container_name: warheimer
+    restart: always
+    cap_add:
+      - SYS_NICE
+    stop_grace_period: 120s
+    ports:
+      - "20456-20457:2456-2457/udp"
+      - "9003:80"
+    volumes:
+      - "${HOME}/warheimer/config:/config"
+      - "${HOME}/warheimer/data:/opt/valheim"
+    environment:
+      SERVER_NAME: "BrutalKhaos"
+      STATUS_HTTP: "true"
+      WORLD_NAME: "Warheimer"
+      SERVER_PASS: "${SERVER_PASS}"
+  valhammer:
+    image: lloesche/valheim-server
+    container_name: valhammer
+    restart: always
+    cap_add:
+      - SYS_NICE
+    stop_grace_period: 120s
+    ports:
+      - "24456-24457:2456-2457/udp"
+      - "9004:80"
+    volumes:
+      - "${HOME}/valhammer/config:/config"
+      - "${HOME}/valhammer/data:/opt/valheim"
+    environment:
+      SERVER_NAME: "BrutalKhaos"
+      STATUS_HTTP: "true"
+      WORLD_NAME: "Valhammer"
+      SERVER_PASS: "${SERVER_PASS}"
