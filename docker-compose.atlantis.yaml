@@ -9,7 +9,7 @@ services:
       - SYS_NICE
     stop_grace_period: 120s
     ports:
-      - "22456-22457:2456-2457/udp"
+      - "2456-2457:2456-2457/udp"
       - "9001:80"
     volumes:
       - "${HOME}/valheimer/config:/config"
@@ -27,7 +27,7 @@ services:
       - SYS_NICE
     stop_grace_period: 120s
     ports:
-      - "21456-21457:2456-2457/udp"
+      - "2458-2459:2456-2457/udp"
       - "9002:80"
     volumes:
       - "${HOME}/breastia/config:/config"
@@ -45,7 +45,7 @@ services:
       - SYS_NICE
     stop_grace_period: 120s
     ports:
-      - "20456-20457:2456-2457/udp"
+      - "2460-2461:2456-2457/udp"
       - "9003:80"
     volumes:
       - "${HOME}/warheimer/config:/config"
@@ -54,22 +54,4 @@ services:
       SERVER_NAME: "BrutalKhaos"
       STATUS_HTTP: "true"
       WORLD_NAME: "Warheimer"
-      SERVER_PASS: "${SERVER_PASS}"
-  valhammer:
-    image: lloesche/valheim-server
-    container_name: valhammer
-    restart: always
-    cap_add:
-      - SYS_NICE
-    stop_grace_period: 120s
-    ports:
-      - "24456-24457:2456-2457/udp"
-      - "9004:80"
-    volumes:
-      - "${HOME}/valhammer/config:/config"
-      - "${HOME}/valhammer/data:/opt/valheim"
-    environment:
-      SERVER_NAME: "BrutalKhaos"
-      STATUS_HTTP: "true"
-      WORLD_NAME: "Valhammer"
       SERVER_PASS: "${SERVER_PASS}"
