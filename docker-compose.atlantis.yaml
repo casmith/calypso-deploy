@@ -15,6 +15,7 @@ services:
       - "${HOME}/valheimer/config:/config"
       - "${HOME}/valheimer/data:/opt/valheim"
     environment:
+      SERVER_PUBLIC: true
       SERVER_NAME: "BrutalKhaos"
       STATUS_HTTP: "true"
       WORLD_NAME: "Valhammer"
@@ -33,6 +34,7 @@ services:
       - "${HOME}/breastia/config:/config"
       - "${HOME}/breastia/data:/opt/valheim"
     environment:
+      SERVER_PUBLIC: true
       SERVER_NAME: "BrutalKhaos"
       STATUS_HTTP: "true"
       WORLD_NAME: "Breastia"
@@ -51,6 +53,7 @@ services:
       - "${HOME}/warheimer/config:/config"
       - "${HOME}/warheimer/data:/opt/valheim"
     environment:
+      SERVER_PUBLIC: true
       SERVER_NAME: "BrutalKhaos"
       STATUS_HTTP: "true"
       WORLD_NAME: "Warheimer"
