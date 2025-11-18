@@ -9,14 +9,14 @@ services:
       - SYS_NICE
     stop_grace_period: 120s
     ports:
-      - "2456-2457:2456-2457/udp"
+      - "2456-2458:2456-2458/udp"
       - "9001:80"
     volumes:
       - "${HOME}/valheimer/config:/config"
       - "${HOME}/valheimer/data:/opt/valheim"
     environment:
       SERVER_PUBLIC: true
-      SERVER_NAME: "BrutalKhaos"
+      SERVER_NAME: "[BrutalKhaos] Valhammer"
       STATUS_HTTP: "true"
       WORLD_NAME: "Valhammer"
       SERVER_PASS: "${SERVER_PASS}"
@@ -28,14 +28,14 @@ services:
       - SYS_NICE
     stop_grace_period: 120s
     ports:
-      - "2458-2459:2456-2457/udp"
+      - "2556-2558:2456-2458/udp"
       - "9002:80"
     volumes:
       - "${HOME}/breastia/config:/config"
       - "${HOME}/breastia/data:/opt/valheim"
     environment:
       SERVER_PUBLIC: true
-      SERVER_NAME: "BrutalKhaos"
+      SERVER_NAME: "[BrutalKhaos] Breastia"
       STATUS_HTTP: "true"
       WORLD_NAME: "Breastia"
       SERVER_PASS: "${SERVER_PASS}"
@@ -47,14 +47,14 @@ services:
       - SYS_NICE
     stop_grace_period: 120s
     ports:
-      - "2460-2461:2456-2457/udp"
+      - "2656-2658:2456-2458/udp"
       - "9003:80"
     volumes:
       - "${HOME}/warheimer/config:/config"
       - "${HOME}/warheimer/data:/opt/valheim"
     environment:
       SERVER_PUBLIC: true
-      SERVER_NAME: "BrutalKhaos"
+      SERVER_NAME: "[BrutalKhaos] Warheimer"
       STATUS_HTTP: "true"
       WORLD_NAME: "Warheimer"
       SERVER_PASS: "${SERVER_PASS}"
