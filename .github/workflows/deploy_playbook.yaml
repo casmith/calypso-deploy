@@ -12,7 +12,7 @@ jobs:
     environment: production
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           using: node20
       - name: Run Ansible Playbook
