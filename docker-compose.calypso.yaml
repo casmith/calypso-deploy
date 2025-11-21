@@ -35,3 +35,20 @@ services:
     ports:
       - 3001:3001
     restart: unless-stopped
+
+  transmission:
+    image: linuxserver/transmission:4.0.6
+    container_name: transmission
+    environment:
+      - PUID=1026
+      - PGID=65537
+      - TZ=America/Chicago
+      # - USER=<your_username>
+      # - PASS=<your_password>
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    volumes:
+      - /mnt/cluster/transmission:/config
+      - /mnt/downloads/torrents:/downloads
