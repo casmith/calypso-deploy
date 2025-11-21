@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
 
   transmission:
-    image: linuxserver/transmission:3.00-r1-ls119
+    image: linuxserver/transmission:3.00-r8-ls151
     container_name: transmission
     environment:
       - PUID=1026
