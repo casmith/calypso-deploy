@@ -18,6 +18,7 @@ jobs:
       - name: Run Ansible Playbook
         env:
           VALHEIM_PASS: ${{ secrets.VALHEIM_PASS }}
+          PIHOLE_API_PASS: ${{ secrets.PIHOLE_API_PASS }}
         run: |
           # Run the playbook; the playbook will read VALHEIM_PASS from the environment if needed.
           ansible-playbook -i hosts.yaml playbook.yaml

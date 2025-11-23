@@ -18,9 +18,9 @@
       ansible.builtin.copy:
         dest: "{{ (deploy_path | default('/home/' ~ ansible_user)) }}/.env"
         content: |
-          {%- for key, val in compose_env.items() -%}
+          {% for key, val in compose_env.items() -%}
           {{ key }}={{ val }}
-          {%- endfor -%}
+          {% endfor -%}
         mode: '0600'
       when: compose_env is defined
 
