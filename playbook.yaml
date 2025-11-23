@@ -11,7 +11,7 @@
 
     - name: Populate compose_env from environment if not set
       set_fact:
-        compose_env: "{{ compose_env | default({}) | combine({'SERVER_PASS': lookup('env','VALHEIM_PASS')}) }}"
+        compose_env: "{{ compose_env | default({}) | combine({'SERVER_PASS': lookup('env','VALHEIM_PASS'), 'PIHOLE_API_PASS': lookup('env','PIHOLE_API_PASS')}) }}"
       when: compose_env is not defined or compose_env.SERVER_PASS is not defined
 
     - name: Create `.env` file from `compose_env` dict (if defined)
