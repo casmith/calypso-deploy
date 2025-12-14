@@ -41,6 +41,8 @@ services:
       FTLCONF_webserver_api_password: '${PIHOLE_API_PASS}'
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: 'all'
+      PIHOLE_UID: "1024"
+      PIHOLE_GID: "100"
     volumes:
       - /mnt/cluster/pihole:/etc/pihole
     cap_add:
