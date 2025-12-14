@@ -11,7 +11,7 @@ all:
           ansible_user: clay
           deploy_path: /home/clay
         cerritos:
-          ansible_host: 192.168.10.52
+          ansible_host: 192.168.10.80
           ansible_user: clay
           deploy_path: /home/clay
         pve2-ubuntu-highmem-1:
