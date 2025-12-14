@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  valheimer:
+    image: lloesche/valheim-server
+    container_name: valheimer
+    restart: always
+    cap_add:
+      - SYS_NICE
+    stop_grace_period: 120s
+    ports:
+      - "2456-2458:2456-2458/udp"
+      - "9001:80"
+    volumes:
+      - "/mnt/cluster/valheim/valheimer/config:/config"
+      - "/mnt/cluster/valheim/valheimer/data:/opt/valheim"
+    environment:
+      SERVER_PUBLIC: true
+      SERVER_NAME: "[BrutalKhaos] Valhammer"
+      STATUS_HTTP: "true"
+      WORLD_NAME: "Valhammer"
+      SERVER_PASS: "${SERVER_PASS}"
+  breastia:
+    image: lloesche/valheim-server
+    container_name: breastia
+    restart: always
+    cap_add:
+      - SYS_NICE
+    stop_grace_period: 120s
+    ports:
+      - "2556-2558:2456-2458/udp"
+      - "9002:80"
+    volumes:
+      - "/mnt/cluster/valheim/breastia/config:/config"
+      - "/mnt/cluster/valheim/breastia/data:/opt/valheim"
+    environment:
+      SERVER_PUBLIC: true
+      SERVER_NAME: "[BrutalKhaos] Breastia"
+      STATUS_HTTP: "true"
+      WORLD_NAME: "Breastia"
+      SERVER_PASS: "${SERVER_PASS}"
+  warheimer:
+    image: lloesche/valheim-server
+    container_name: warheimer
+    restart: always
+    cap_add:
+      - SYS_NICE
+    stop_grace_period: 120s
+    ports:
+      - "2656-2658:2456-2458/udp"
+      - "9003:80"
+    volumes:
+      - "/mnt/cluster/valheim/warheimer/config:/config"
+      - "/mnt/cluster/valheim/warheimer/data:/opt/valheim"
+    environment:
+      SERVER_PUBLIC: true
+      SERVER_NAME: "[BrutalKhaos] Warheimer"
+      STATUS_HTTP: "true"
+      WORLD_NAME: "Warheimer"
+      SERVER_PASS: "${SERVER_PASS}"

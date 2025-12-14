@@ -14,3 +14,7 @@ all:
           ansible_host: 192.168.10.52
           ansible_user: clay
           deploy_path: /home/clay
+        pve-ubuntu-highmen-01:
+          ansible_host: 192.168.10.40
+          ansible_user: ubuntu
+          deploy_path: /home/ubuntu
